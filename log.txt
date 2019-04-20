@@ -1,0 +1,55 @@
+Apr 16
+
+Grape:
+A current GA program for TSP is referenced. (https://towardsdatascience.com/evolution-of-a-salesman-a-complete-genetic-algorithm-tutorial-for-python-6fe5d2b3ca35)
+The result is not so good, as no local seach implied.
+
+Hannah:
+An improvement of current two-optimal function is realized, speed up
+
+Daniel:
+10 sample routes and their local optime is found via two-optimal function. Calculate Socre of each routes based on their optime's total distance and number of steps to move there. This should be the trainingset for Neural Network
+
+
+Apr 17 
+
+Grape:
+GA combined with two-optimal for local search is experimented, signfinicant improvement from previous.
+Problem: too quick convergence (only two generations)
+Solve: try different cross-over method and population update strategy
+
+Daniel:
+A class route is realized. it could generate intial routes, receive routes from index, calculate total distance, perform two-opt and report opt_distance, steps, and score 
+
+Apr 18:
+Grape: 
+Try to realize DPX cross-over, but some problems
+
+Ziyan:
+Try to build Neural Network to predict socre of a route
+Solved: encode a trip into adjacency matrix and reshape to 1*d 
+Prblems: current NN could only return value from 0-1, don't know why
+
+Apr 19:
+
+Daniel:
+Revised two-opt function: change np.concatenate into list concatenate, otherwise single element comes to float and fails to be indices.
+Solve the problem of NN report only 0-1: change parameter of optimizer. But it is still a numerical input, not matrix input version
+Generated 1000 sample routes to train NN.
+
+
+To do next:
+realise DPX (Grape), then perform GA to see the result
+Other possbile imporvement of GA: population update strategy
+
+realise NN to predict route's score (Ziyan, Hannah, Daniel), then imporve GA-2opt with NN.
+Two directions to try: 
+ - predict leave-one route's score, which may improve 2opt from o(n^2) to o(n)
+ - take score in other steps of GA, e.g. population update strategy
+
+One more: is current score reasonable? change lambda of penalty?
+
+
+
+
+
