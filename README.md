@@ -20,40 +20,41 @@ The whole process is as below:
 
 Attribution: 
 
-> x,y: *numeric* coordinates of the city point; 
+	- x,y: *numeric* coordinates of the city point; 
 
-index: *int* index of the city in natural order
+	- index: *int* index of the city in natural order
 
 Methods:
 
-> distance(*City*) return the distance of current city and given city  
+	- distance(*City*): return the distance of current city and given city  
 
 - class Route:
 
 Attributes: 
-> maps: *list* of *City class* in natural order
 
-route: *list* of *City class* in route order
+	- maps: *list* of *City class* in natural order
 
-index: *list* of *int* index in route order
+	- route: *list* of *City class* in route order
 
-d: *numeric* cost of route, sum of distance between connected cities
+	- index: *list* of *int* index in route order
 
-score: *numeric* score to evaluate the route, cost + penalty for two-opt steps
+	- d: *numeric* cost of route, sum of distance between connected cities
+
+	- score: *numeric* score to evaluate the route, cost + penalty for two-opt steps
 
 Methods:
 
-> Greedy_route() generate a half greedy-half random new route, for detail
+	- Greedy_route(): generate a half greedy-half random new route, for detail
 
-new_route() generate a fixed route by index 
+	- new_route(): generate a fixed route by index 
 
-distence() calculate the distance of current route
+	- distence(): calculate the distance of current route
 
-two_opt() local search by two-optimal 
+	- two_opt(): local search by two-optimal 
 
-two_opt_swap() perform a two-swap at given position
+	- two_opt_swap(): perform a two-swap at given position
 
-cal_score() 
+	- cal_score():
 
-mutate() perform a two-swap at random position
+	- mutate(): perform a two-swap at random position
 
