@@ -19,7 +19,7 @@ for i,cts in enumerate(dataset):
 
 dm_list = []
 for i in range(len(map_list)):
-    dm = pd.read_csv("mprecord/epoch9_batch100_data%d.csv"%i)
+    dm = pd.read_csv("mprecord/epoch9_data%d.csv"%i)
     dm_list.append(dm.values)
 
 def Gene_Alg(maps,popsize,use_dm = False,dm = None,max_it=50 ,mu_rate=0.01,elite=0.2, greedy_pool = 5):
