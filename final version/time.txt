@@ -1,0 +1,21 @@
+time used
+epoch0_batch0 with time 291.00 s
+epoch0_batch100 with time 1386.00 s
+epoch1_batch0 with time 2137.00 s
+epoch1_batch100 with time 3218.00 s
+epoch2_batch0 with time 3949.00 s
+epoch2_batch100 with time 5021.00 s
+epoch3_batch0 with time 5759.00 s
+epoch3_batch100 with time 6826.00 s
+epoch4_batch0 with time 7554.00 s
+epoch4_batch100 with time 8605.00 s
+epoch5_batch0 with time 9351.00 s
+epoch5_batch100 with time 10421.00 s
+epoch6_batch0 with time 11160.00 s
+epoch6_batch100 with time 12231.00 s
+epoch7_batch0 with time 12970.00 s
+epoch7_batch100 with time 14019.00 s
+epoch8_batch0 with time 14756.00 s
+epoch8_batch100 with time 15815.00 s
+epoch9_batch0 with time 16542.00 s
+epoch9_batch100 with time 17591.00 s

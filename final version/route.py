@@ -29,11 +29,6 @@ class City:
     def __repr__(self):
         return "(" + str(self.x) + "," + str(self.y) + ")"
 
-def readCities(file, skiplines):
-    cities_ = pd.read_csv(file,skiprows=skiplines,header = None,sep=' ')
-    cities_ = cities_.drop(cities_.columns[[0]], axis=1)
-    cities_ = np.array(cities_)[0:len(cities_)-1,[-2,-1]]
-    return cities_
 
 def two_opt_swap(r,i,k):
     if i>k:
@@ -83,7 +78,7 @@ class Route:
             i,k = k+1, i-1
         return r[:i]+r[i:k+1][::-1]+r[k+1:]
     
-    def two_opt(self, improvement_threshold = 1e-3):
+    def two_opt(self, max_it = 1e3,  improvement_threshold = 1e-3):
         maps = self.maps
         index = self.index
         improvement_factor = 1 
@@ -96,6 +91,11 @@ class Route:
             #no need to cover first and last point
             for swap_first in range(1,len(index)-2): 
                 for swap_last in range(swap_first+1,len(index)): 
+                    if count >= max_it:
+                                self.steps = count
+                                self.oldindex = self.index.copy()
+                                self.new_route(index)
+                                return
                     new_index = two_opt_swap(index,swap_first,swap_last) 
                     a,b,c,d = swap_first,swap_first-1, swap_last ,(swap_last+1) % len(index)
                     d2_former = (maps[index[a]]).distance(maps[index[b]])+(maps[index[c]]).distance(maps[index[d]])
@@ -110,12 +110,47 @@ class Route:
         self.steps = count
         self.oldindex = self.index.copy()
         self.new_route(index)
-        self.cal_score()
-  
-    def cal_score(self,):
-        lamb = 500/len(self.index)
-        self.score = -self.d - self.steps*lamb
 
+    def two_opt_prob(self, dm,k=5, max_it=1e3):
+        maps = self.maps
+        self.oldindex = self.index.copy()
+        index = self.index
+        improvement_factor = 1 
+        best_distance = self.d 
+        count = 0
+        distance_to_beat = best_distance 
+        #deleted edge: swap_first-1 to swap_first, swap_last to swap_last+1
+        #added edge: swap_first-1 t0 swap_last, swap_first to swap_last+1
+        #no need to cover first and last point
+        for swap_first in range(1,len(index)-2):
+            dm_t = dm[index,:][:,index]
+            dp = dm_t[swap_first,:]
+            pool = sorted(range(len(dp)), key = lambda i: -dp[i])[:k]
+            swap = None
+            impr = 0
+            for choice in pool:
+                swap_last = choice-1 #becase swap_first connect to swap_last+1 
+                if (swap_first - swap_last)%len(index) < 3:
+                    continue
+                if count >= max_it:
+                            self.steps = count
+                            self.oldindex = self.index.copy()
+                            self.new_route(index)
+                            return
+                new_index = two_opt_swap(index,swap_first,swap_last) 
+                a,b,c,d = swap_first,swap_first-1, swap_last ,(swap_last+1) % len(index)
+                d2_former = (maps[index[a]]).distance(maps[index[b]])+(maps[index[c]]).distance(maps[index[d]])
+                d2_new = (maps[index[c]]).distance(maps[index[b]])+(maps[index[d]]).distance(maps[index[a]])
+                diff = d2_former - d2_new
+                if diff > impr:
+                    impr = diff
+                    swap = swap_last
+            if impr > 0:
+                index = two_opt_swap(index, swap_first, swap)
+                count += 1
+        self.steps = count
+        self.new_route(index)
+       
     def mutate(self,swap_first,swap_last):
         self.route = two_opt_swap(self.route, swap_first, swap_last)
         self.index = two_opt_swap(self.index, swap_first, swap_last)
