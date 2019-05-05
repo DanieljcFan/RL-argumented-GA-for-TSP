@@ -1,5 +1,5 @@
 # RL-agumented-GeneticAlgorithm-for-TSP
-A project to find solution of a TSP problem, in cooperate with Grape Qiao, Han Wang, and Ziyan Lin
+A project to find solution of a TSP problem, in cooperate with Grape Qiao, Han Wang, and Ziyan Lin. See https://github.com/DanieljcFan/RL-argumented-GA-for-TSP/blob/master/553.667-FinalReport-JFan%2CHWang%2CXQiu%2CZLin.pdf
 
 TSP is a famous NP-hard problem, and Genetic Algorithm combined with Lin-Kernighan heuristic has been shown to be one of the best approximate solutions. Still, here is a space for imporvement. In this project Reinforcement Learning is applied to improve the efficiency of local search and thus improve the total algorithm. 
 
@@ -38,9 +38,9 @@ Attributes:
 
 	- index: *list* of *int* index in route order
 
-	- d: *numeric* cost of route, sum of distance between connected cities
+	- oldindex: *list* of *int* previous index in route order before local search
 
-	- score: *numeric* score to evaluate the route, cost + penalty for two-opt steps
+	- d: *numeric* cost of route, sum of distance between connected cities
 
 Methods:
 
@@ -51,6 +51,8 @@ Methods:
 	- distence(): calculate the distance of current route
 
 	- two_opt(): local search by two-optimal 
+
+	- two_opt_prob(): local search based on decision matrix
 
 	- two_opt_swap(): perform a two-swap at given position
 
