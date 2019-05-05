@@ -13,4 +13,4 @@ The whole process is as below:
  - Mutate:
  repeats until converge
 
-[Function documentaion](./Function.md)
+[Function documentaion](./function.md)
