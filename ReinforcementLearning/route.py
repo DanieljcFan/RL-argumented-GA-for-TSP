@@ -37,29 +37,34 @@ def two_opt_swap(r,i,k):
  
 
 class Route:
-    def __init__(self, maps, index=None, pool=5,selfopt=False):
+    def __init__(self, maps, index=None, pool=5,selfopt=False,show=False):
         self.score = -1e6
         self.maps = maps
         if index:
             self.new_route(index)
         else:
-            self.greedy_route(pool)
+            self.greedy_route(pool,show=show)
         if selfopt:
             self.two_opt()
 
-    def greedy_route(self, pool = 5):
+    def greedy_route(self, pool = 5,show=False):
         maps_ = self.maps.copy()
+        if show:
+            self.pool_list = []
         self.index = random.sample(range(len(maps_)), 1)
         self.route = [maps_.pop(self.index[0])]
         while maps_:
             dist_list = [ self.maps[self.index[-1]].distance(ct) for ct in maps_]
             ind = np.argsort(dist_list)[:pool]
+            if show:
+                point_pool = [maps_[i].index for i in ind]
+                self.pool_list.append(point_pool)
             ind_s = random.sample(list(ind), 1)[0]
             next_i= maps_[ind_s].index
             self.index.append(next_i)
             self.route.append(maps_.pop(ind_s))
         self.distance()
-
+ 
     def distance(self):
         self.d = 0
         for i in range(len(self.index)):

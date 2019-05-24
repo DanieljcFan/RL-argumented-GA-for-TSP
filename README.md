@@ -1,5 +1,5 @@
 # RL-agumented-GeneticAlgorithm-for-TSP
-A project to find solution of a TSP problem, in cooperate with Grape Qiao, Han Wang, and Ziyan Lin. See https://github.com/DanieljcFan/RL-argumented-GA-for-TSP/blob/master/553.667-FinalReport-JFan%2CHWang%2CXQiu%2CZLin.pdf
+A project to find solution of a TSP problem, in cooperate with Grape Qiao, Han Wang, and Ziyan Lin. [paper heter](./553.667-FinalReport-JFan,HWang,XQiu,ZLin.pdf)
 
 TSP is a famous NP-hard problem, and Genetic Algorithm combined with Lin-Kernighan heuristic has been shown to be one of the best approximate solutions. Still, here is a space for imporvement. In this project Reinforcement Learning is applied to improve the efficiency of local search and thus improve the total algorithm. 
 
