@@ -1,7 +1,10 @@
 # RL-agumented-GeneticAlgorithm-for-TSP
-A project to find solution of a TSP problem, in cooperate with Grape Qiao, Han Wang, and Ziyan Lin. [paper heter](./553.667-FinalReport-JFan,HWang,XQiu,ZLin.pdf)
+A project to find solution of a TSP(Travelling Salesman Problem), in cooperate with Grape Qiao, Han Wang, and Ziyan Lin. [paper here](./553.667-FinalReport-JFan,HWang,XQiu,ZLin.pdf)
 
-TSP is a famous NP-hard problem, and Genetic Algorithm combined with Lin-Kernighan heuristic has been shown to be one of the best approximate solutions. Still, here is a space for imporvement. In this project Reinforcement Learning is applied to improve the efficiency of local search and thus improve the total algorithm. 
+A classical method to solve TSP is [Genetic Algorithm(for global search) combined with Lin-Kernighan heuristic(for local search)](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.48.5310), while an emerging method is [Neural Combinatorial Optimization with Reinforcement Learning](https://arxiv.org/abs/1611.09940). They are completely different approaches, but in this work two reduced version of each method is combined to achieve a satisfying result with limited computing resourse.
+
+The key point of this RL-agumented-GA is the way to find out a proper 2-opt imporvement of current route to perform GA-LKH. While previously people try points based on order of distance, what we do here is following the order of probability(of good reward in the end), which is gained from a RL model. It turns out that for TSP with small size(around 50 points), our method is better than the traditional in terms of efficiency, and almost the same in terms of target value(the total cost of route).
+
 
 The whole process is as below:
  - Generate n route as initial population
