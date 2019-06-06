@@ -71,4 +71,11 @@ Parameters:
 
 	- greedy_pool: size of pool when initialize route. See class Route
 
+Return:
+
+	- *Route* of optimal solution
+
+	- distance of optimal solution
+
+	- time consumed (seconds)
 
