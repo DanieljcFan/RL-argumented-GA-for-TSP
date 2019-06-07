@@ -51,7 +51,7 @@ Methods:
 
 operations on Route, to realize genetic algorithm.
 
-- function Gene_Alg(maps, popsize, use_dm=False, dm = None, max_it=50,mu_rate=0.01,elite=0.2,greedy_pool=5):
+- Gene_Alg(maps, popsize, use_dm=False, dm = None, max_it=50,mu_rate=0.01,elite=0.2,greedy_pool=5):
 
 Parameters:
 
@@ -78,4 +78,85 @@ Return:
 	- distance of optimal solution
 
 	- time consumed (seconds)
+
+## DPX_.py
+
+Perform Distance-Preserving Crossover for breeding in genetic algorithm
+
+- breedDPX(parent1,parent2,maps):
+
+Parameters:
+
+	- parent1,parent2: *Route* of parents to breed new route for next generation 
+
+	- maps: *List* of *City*, indicates the maps where Route developed
+
+Return:
+
+	- *Route* as child
+
+- DPX_d(parent1,parent2,maps):
+
+Parameters:
+
+	- parent1,parent2: *Route* 
+
+	- maps: *List* of *City*, indicates the maps where Route developed
+
+Return:
+
+	- *Int* of distance between input *Route*, in terms of number of different edge
+
+- Diverge(generation, maps):
+
+Parameters:
+
+	- generation: *List* of *Route* 
+
+	- maps: *List* of *City*, indicates the maps where Route developed
+
+Return:
+
+	- average distance between input *Route*, in terms of number of different edge
+
+## RL.py
+
+Deep Reinforcement Learning
+
+- class TrainModel:
+
+Attributes:
+
+	- model: *CombinatorialRL* model
+
+	- train_dataset, val_dataset: *TSPDataset* train and valid dataset
+
+Methods:
+
+	- train_and_validate(n_epochs, data_pred): train RL and provide decision matrix for newly given data. The decision matrix would be saved in seperated .csv file.
+
+		Attributes:
+
+			- n_epochs: *Int* number of epochs to train 
+
+			- data_pred: *TSPDataset* where decision matrix required
+
+	- pred(dataset, assign_i=-1): given dataset, predict the decision vector for point i
+
+		Attributes:
+
+			- dataset: *TSPDataset* where decision vector required
+
+			- assign_i: *Int* index of point in dataset whose decision vector required. if -1 original decision process of pointer network is recorded.
+
+
+
+
+
+
+
+
+
+
+
 
